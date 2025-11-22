@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MOVIE REPORT – TRON: LEGACY</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Share Tech Mono', monospace;
+            line-height: 1.8;
+            margin: 0;
+            padding: 20px;
+            background: #000000;
+            background-image: 
+                radial-gradient(circle at 20% 50%, rgba(0, 191, 255, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(255, 69, 0, 0.1) 0%, transparent 50%),
+                linear-gradient(45deg, transparent 49%, rgba(0, 191, 255, 0.05) 50%, transparent 51%),
+                linear-gradient(-45deg, transparent 49%, rgba(255, 69, 0, 0.05) 50%, transparent 51%);
+            background-size: 100% 100%, 100% 100%, 20px 20px, 20px 20px;
+            color: #ffffff;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: rgba(0, 0, 0, 0.9);
+            border-radius: 0;
+            box-shadow: 0 0 50px rgba(0, 191, 255, 0.8), 0 0 100px rgba(255, 69, 0, 0.4);
+            padding: 30px;
+            border: 2px solid #00BFFF;
+            position: relative;
+        }
+        .container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: repeating-linear-gradient(
+                0deg,
+                transparent,
+                transparent 2px,
+                rgba(0, 191, 255, 0.1) 2px,
+                rgba(0, 191, 255, 0.1) 4px
+            );
+            pointer-events: none;
+            border-radius: 0;
+        }
+        h1 {
+            font-family: 'Orbitron', sans-serif;
+            text-align: center;
+            color: #00BFFF;
+            font-size: 3em;
+            text-shadow: 0 0 20px #00BFFF, 0 0 40px #00BFFF, 0 0 60px #00BFFF;
+            margin-bottom: 40px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+        h2 {
+            font-family: 'Orbitron', sans-serif;
+            color: #FF4500;
+            font-size: 1.8em;
+            border-bottom: 3px solid #FF4500;
+            padding-bottom: 10px;
+            margin-top: 40px;
+            text-shadow: 0 0 15px #FF4500, 0 0 30px #FF4500;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+        .section {
+            margin-bottom: 40px;
+            position: relative;
+        }
+        p, ul, ol {
+            font-size: 1.1em;
+            color: #e0e0e0;
+            text-shadow: 0 0 5px rgba(0, 191, 255, 0.5);
+        }
+        ul {
+            list-style-type: none;
+            margin-left: 0;
+        }
+        ul li::before {
+            content: '>';
+            color: #00BFFF;
+            font-weight: bold;
+            margin-right: 10px;
+            text-shadow: 0 0 10px #00BFFF;
+        }
+        ol {
+            list-style-type: none;
+            counter-reset: tron-counter;
+            margin-left: 0;
+        }
+        ol li {
+            counter-increment: tron-counter;
+            margin-bottom: 10px;
+        }
+        ol li::before {
+            content: counter(tron-counter) '. ';
+            color: #FF4500;
+            font-weight: bold;
+            text-shadow: 0 0 10px #FF4500;
+        }
+        .image-placeholder {
+            background: linear-gradient(45deg, #000000, #111111);
+            padding: 0;
+            text-align: center;
+            border: 2px dashed #00BFFF;
+            border-radius: 0;
+            margin: 20px auto;
+            color: #00BFFF;
+            font-weight: bold;
+            box-shadow: inset 0 0 20px rgba(0, 191, 255, 0.3), 0 0 20px rgba(0, 191, 255, 0.5);
+            position: relative;
+            display: block; /* Cambiado a block para centrar mejor */
+            width: fit-content; /* Ajusta al tamaño de la imagen */
+        }
+        .image-placeholder img {
+            max-width: 400px;
+            height: auto;
+            border-radius: 6px;
+            display: block;
+            margin: 0 auto; /* Centra la imagen dentro del placeholder */
+        }
+        strong {
+            color: #FF4500;
+            text-shadow: 0 0 10px #FF4500;
+        }
+        footer {
+            text-align: center;
+            margin-top: 50px;
+            padding-top: 20px;
+            border-top: 1px solid #00BFFF;
+            color: #e0e0e0;
+            font-size: 0.9em;
+            text-shadow: 0 0 5px rgba(0, 191, 255, 0.5);
+        }
+
+        /* --- CARRUSEL --- */
+        .carousel-container {
+            width: 100%;
+            position: relative;
+        }
+
+        .carousel {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-template-rows: auto auto;
+            gap: 20px;
+            padding: 10px;
+        }
+
+        .carousel-item {
+            border: 3px solid #00BFFF;
+            box-shadow: 0 0 20px #00BFFF inset;
+            border-radius: 8px;
+            overflow: hidden;
+            position: relative;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+            background: #111;
+            aspect-ratio: 16 / 9;
+        }
+
+        .carousel-item:nth-child(3) {
+            grid-column: 1 / -1;
+        }
+
+        .carousel-item:hover {
+            transform: scale(1.15);
+            box-shadow: 0 0 40px #00BFFF, 0 0 80px #00BFFF inset;
+            z-index: 10;
+        }
+
+        .carousel-item img,
+        .carousel-item video {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>MOVIE REPORT – TRON: LEGACY</h1>
+
+        <div class="section">
+            <h2>1. TITLE (Include genre, director, nationality)</h2>
+            <p><strong>Title:</strong> Tron: Legacy</p>
+            <p><strong>Genre:</strong> Science fiction / Action</p>
+            <p><strong>Director:</strong> Joseph Kosinski</p>
+            <p><strong>Nationality:</strong> American film</p>
+            <div class="image-placeholder">
+                <img src="https://cinecomolocontamos.wordpress.com/wp-content/uploads/2011/01/tron-legacy-poster-wallpaper.jpg" alt="Tron Legacy Poster">
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>2. SUMMARY – What is it about?</h2>
+            <p>Tron: Legacy is about Sam Flynn, a young man who enters a digital world inside a computer system. There he meets programs that look like people, discovers that his father has been trapped for years, and must fight against a powerful program called Clu to escape the Grid and save both worlds.</p>
+
+            <div class="carousel-container">
+                <div class="carousel" aria-label="Image carousel Tron: Legacy summary section">
+                    <div class="carousel-item" title="Lightcycle GIF 1">
+                        <img src="https://i.pinimg.com/originals/ea/f9/8f/eaf98f8c24142d35c683c829ce8f1e17.gif" alt="Tron Legacy Lightcycle GIF 1" />
+                    </div>
+                    <div class="carousel-item" title="Lightcycle GIF 2">
+                        <img src="imagen/tron gif.gif" alt="Tron Legacy Lightcycle GIF 2" />
+                    </div>
+                    <div class="carousel-item" title="Sam Flynn GIF">
+                        <img src="https://i.pinimg.com/originals/44/22/b6/4422b6a050497d8078b61a9a7d15727b.gif" alt="Tron Legacy Sam Flynn GIF" />
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>3. GIVE YOUR OWN OPINION – Would you recommend it? Why/why not?</h2>
+            <p>I would definitely recommend this movie because the visual effects and music are amazing. The idea of what would happen if we could enter a digital world is very interesting and original. Also, the story is exciting and emotional.</p>
+            <div class="image-placeholder">
+                <video src="imagen/tron legacy edit.mp4" controls style="width:100%; border-radius:6px;"></video>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>4. WHAT IS THE MESSAGE OF THE MOVIE?</h2>
+            <p>The movie teaches that:</p>
+            <ul>
+                <li>technology can be powerful, but it needs human values</li>
+                <li>perfection is impossible</li>
+                <li>we should appreciate people, not just systems</li>
+            </ul>
+            <p>It also explores the importance of family and facing your past.</p>
+        </div>
+
+        <div class="section">
+            <h2>5. WRITE 5 QUESTIONS ABOUT THE STORY OR THE MESSAGE</h2>
+            <ol>
+                <li>What would you do if you could enter a digital world like the Grid?</li>
+                <li>Why did Clu become the main threat in the system?</li>
+                <li>What does the movie say about the dangers of perfection?</li>
+                <li>How does Sam change after meeting his father in the Grid?</li>
+                <li>What role does technology play in our lives today compared to the movie?</li>
+            </ol>
+        </div>
+
+        <footer>
+            <p>By: Alejandro Pérez R</p>
+        </footer>
+    </div>
+</body>
+</html>
